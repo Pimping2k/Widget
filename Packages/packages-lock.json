@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.pimping2k.servicelocator": {
+      "version": "https://github.com/Pimping2k/ServiceLocatorUnity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "48204454829e5c7c53e9dc5930abad507cfa9ed0"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.9",
       "depth": 0,
