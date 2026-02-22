@@ -8,7 +8,10 @@ namespace Gameplay
 {
     public class CounterService : MonoBehaviour, IService
     {
+        [SerializeField] private float _inputCooldown = 0.05f;
+        
         private IInputService _inputService;
+        private float _lastClickTime;
         
         public int Counter { get; private set; }
 
@@ -43,7 +46,14 @@ namespace Gameplay
 
         private void OnAnyClickPerformed(InputAction.CallbackContext ctx)
         {
+            if(!ctx.ReadValueAsButton())
+                return;
+
+            if (Time.time - _lastClickTime < _inputCooldown) 
+                return;
+            
             PerformMainAction();
+            _lastClickTime = Time.time;
         }
 
         private void PerformMainAction()
