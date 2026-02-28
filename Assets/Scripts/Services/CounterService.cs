@@ -1,10 +1,9 @@
 ﻿using System;
 using MyPackage.Runtime.ServiceLocator_Core;
-using Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Gameplay
+namespace Services
 {
     public class CounterService : MonoBehaviour, IService
     {
