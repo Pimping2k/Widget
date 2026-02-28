@@ -10,6 +10,7 @@ namespace Services
         [SerializeField] private float _inputCooldown = 0.05f;
         
         private IInputService _inputService;
+        private GlobalKeyHookService _globalKeyHookService;
         private float _lastClickTime;
         
         public int Counter { get; private set; }
@@ -19,6 +20,7 @@ namespace Services
         private void Awake()
         {
             _inputService = ServiceLocator.Resolve<IInputService>();
+            _globalKeyHookService = ServiceLocator.Resolve<GlobalKeyHookService>();
         }
 
         private void Start()
@@ -36,10 +38,12 @@ namespace Services
             if (toggle)
             {
                 _inputService.UI.AnyClick.performed += OnAnyClickPerformed;
+                _globalKeyHookService.KeyPressed += PerformMainAction;
             }
             else
             {
                 _inputService.UI.AnyClick.performed -= OnAnyClickPerformed;
+                _globalKeyHookService.KeyPressed -= PerformMainAction;
             }
         }
 
@@ -47,7 +51,7 @@ namespace Services
         {
             if(!ctx.ReadValueAsButton())
                 return;
-
+        
             if (Time.time - _lastClickTime < _inputCooldown) 
                 return;
             
