@@ -42,7 +42,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMix: 0
-    - _Progress: 0
+    - _PixelCount: 128
+    - _Progress: 0.025390625
     - _StepsAmount: 128
     m_Colors: []
   m_BuildTextureStacks: []

@@ -13,6 +13,8 @@ namespace Gameplay
 
         private CounterService _counterService;
 
+        public event Action ImageFinished;
+
         private void Awake()
         {
             _counterService = ServiceLocator.Resolve<CounterService>();
@@ -32,6 +34,9 @@ namespace Gameplay
             var material = _pixelArtContainer.CurrentSelectedSprite.material;
             currentProgress = Mathf.Clamp01(currentProgress);
             material.SetFloat(MATERIAL_PROGRESS, currentProgress);
+            
+            if(currentProgress >= .01f)
+                ImageFinished?.Invoke();
         }
     }
 }
